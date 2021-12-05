@@ -308,22 +308,11 @@ func newPushHandler() http.Handler {
 			}
 		}
 		time.Sleep(100 * time.Millisecond) // fake network latency + parsing time
-		if err := pushTmpl.Execute(w, struct {
-			CacheBust   int64
-			HTTPSHost   string
-			HTTP1Prefix string
-		}{
-			CacheBust:   cacheBust,
-			HTTPSHost:   httpsHost(),
-			HTTP1Prefix: http1Prefix(),
-		}); err != nil {
-			log.Printf("Executing server push template: %v", err)
-		}
 	})
 }
 
 func newGopherTilesHandler() http.Handler {
-	const gopherURL = "https://blog.golang.org/2years/2years-gophers.jpg"
+	const gopherURL = "https://thefengs.com/wuchang/courses/cs430/go-programming-language-turns-two_gophers.jpg"
 	res, err := http.Get(gopherURL)
 	if err != nil {
 		log.Fatal(err)
