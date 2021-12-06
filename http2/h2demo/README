@@ -9,4 +9,28 @@ export GOPATH=~/go
 export PATH=~/go/bin:$PATH
 cd golang-net-h2demo/http2/h2demo/
 go build h2demo.go
-./h2demo
+./h2demo -https_addr mashimaro.cs.pdx.edu:4430 -http_addr mashimaro.cs.pdx.edu:8080
+
+#=======================================================================
+# Or install within 430 directory
+#=======================================================================
+wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz
+
+tar -C /usr/local/home/wuchang/430/goroot -xzf go1.13.linux-amd64.tar.gz
+
+git clone -b release-branch.go1.15 https://github.com/wu4f/golang-net-h2demo
+
+export PATH=/usr/local/home/wuchang/430/goroot/go/bin:$PATH
+export GOROOT=/usr/local/home/wuchang/430/goroot/go
+export GOPATH=/usr/local/home/wuchang/430/go
+
+cd golang-net-h2demo/http2/h2demo
+
+# copy mashimaro.cs.pdx.edu's certs over from
+#   /etc/letsencrypt/live/thefengs.com
+mv fullchain.pem server.crt
+mv privkey.pem server.key
+
+go build h2demo.go
+
+./h2demo -https_addr mashimaro.cs.pdx.edu:4430 -http_addr mashimaro.cs.pdx.edu:8080
