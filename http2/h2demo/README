@@ -1,18 +1,5 @@
-This is a demo webserver that shows off Go's HTTP/2 support.
-
-# On a Ubuntu 20.04 machine
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install golang -y
-git clone -b release-branch.go1.15 https://github.com/wu4f/golang-net-h2demo
-export GOPATH=~/go
-export PATH=~/go/bin:$PATH
-cd golang-net-h2demo/http2/h2demo/
-go build h2demo.go
-./h2demo -https_addr mashimaro.cs.pdx.edu:4430 -http_addr mashimaro.cs.pdx.edu:8080
-
 #=======================================================================
-# Or install within 430 directory
+# Install within 430 directory
 #=======================================================================
 wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz
 
@@ -33,4 +20,18 @@ mv privkey.pem server.key
 
 go build h2demo.go
 
+./h2demo -https_addr mashimaro.cs.pdx.edu:4430 -http_addr mashimaro.cs.pdx.edu:8080
+
+
+#=======================================================================
+# Install on a Ubuntu 20.04 machine
+#=======================================================================
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install golang -y
+git clone -b release-branch.go1.15 https://github.com/wu4f/golang-net-h2demo
+export GOPATH=~/go
+export PATH=~/go/bin:$PATH
+cd golang-net-h2demo/http2/h2demo/
+go build h2demo.go
 ./h2demo -https_addr mashimaro.cs.pdx.edu:4430 -http_addr mashimaro.cs.pdx.edu:8080
